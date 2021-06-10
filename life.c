@@ -122,3 +122,45 @@ int nextState(int row, int col, Board* b_t ){
     return DEAD;
 }
 
+/**
+ * @brief Reads the current board and returns a board for time t+1
+ * 
+ **/
+Board* board_t1(Board* board_t){
+    int nrow = board_t->nrow;
+    int ncol = board_t->ncol;
+    Board* board_t_plus_1 = initBoard(nrow,ncol);
+    for(int i=0;i<nrow; i++){
+        for(int j=0;j<ncol;j++){
+            int state_t1 = nextState(i,j,board_t);
+            board_t_plus_1->gameGrid[i][j] = state_t1;
+        }
+    }
+    return board_t_plus_1;
+}
+
+
+/**
+ * @brief Checks if all of the cells of a board is dead
+ * 
+ **/
+bool deadBoard(Board* b){
+    for(int i=0;i<b->nrow;i++){
+        for(int j=0;j< b->ncol; j++){
+            if(b->gameGrid[i][j]==ALIVE) return false;
+        }
+    }
+    return true;
+}
+
+/**
+ * @brief Game loop
+ * 
+ **/
+void game(Board* b_t, int maxIter){
+    print_matrix(b_t->gameGrid,b_t->nrow,b_t->ncol);
+    if(deadBoard(b_t) || maxIter==0) return;
+    Board* b_t1 = board_t1(b_t);
+    sleep(1);
+    return game(b_t1, maxIter-1); 
+}
