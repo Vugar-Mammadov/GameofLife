@@ -61,6 +61,29 @@ Board* initBoard(int nrow, int ncol){
 }
 
 /**
+ * @brief prints board using ANSI
+ * 
+ **/
+void print_board(Board* b){
+    printf("\x1b[H");
+    printf("\x1b[2J");
+    for(int i=0; i<b->nrow; i++){
+        for(int j=0;j<b->ncol;j++){
+            
+            if(b->gameGrid[i][j]==ALIVE){
+                
+                printf("\x1b[2;37;40m- \033[0m");
+            }
+            if(b->gameGrid[i][j]==DEAD){
+                printf("\x1b[41m  \033[0m");
+            }
+            
+        }
+        printf("\n");
+    }
+}
+
+/**
  * @brief fills the given board with DEAD cells 
  * 
  **/
@@ -158,7 +181,7 @@ bool deadBoard(Board* b){
  * 
  **/
 void game(Board* b_t, int maxIter){
-    print_matrix(b_t->gameGrid,b_t->nrow,b_t->ncol);
+    print_board(b_t);
     if(deadBoard(b_t) || maxIter==0) return;
     Board* b_t1 = board_t1(b_t);
     sleep(1);
