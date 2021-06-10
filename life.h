@@ -64,4 +64,34 @@ Board* initBoard(int nrow, int ncol);
  **/
 void fillBoard(Board* b);
 
+/**
+ * @brief for a given cell returns the number of alive neighbours
+ * 
+ **/
+int aliveNeighboursCount(int row, int col, Board* b);
+
+/**
+ * @brief returns a next state (state in t+1) of a given cell
+ * 
+ **/
+int nextState(int row, int col, Board* b_t );
+
+/**
+ * @brief Reads the current board and returns a board for time t+1
+ * 
+ **/
+Board* board_t1(Board* board_t);
+
+/**
+ * @brief Checks if all of the cells of a board is dead
+ * 
+ **/
+bool deadBoard(Board* b);
+
+/**
+ * @brief Game loop
+ * 
+ **/
+void game(Board* b_t, int maxIter);
+
 #endif
