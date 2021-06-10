@@ -33,11 +33,35 @@ typedef struct board{
  *  @return returns: pointer to the 2D integer array
  **/
 int ** create_2D_array(int nrow, int ncol);
+
+/**
+ * @brief fills given matrix with the given value
+ * @param n : value which will be filled
+ * @param matrix : 2D matrix
+ * @param nrow: number of rows in the matrix
+ * @param ncol: number of columns in the matrix
+ * @returns void
+ **/
 void fill_matrix(int n, int** matrix, int nrow, int ncol);
+
+
+/**
+ * @brief prints the given matrix in the console
+ * 
+ **/
 void print_matrix(int** matrix, int nrow, int ncol);
 
+/**
+ * @brief initialize new game board with the specified width and height
+ * @param nrow: number of rows, ncol:number of cols
+ * 
+ **/
+Board* initBoard(int nrow, int ncol);
 
-
-
+/**
+ * @brief fills the given board with DEAD cells 
+ * 
+ **/
+void fillBoard(Board* b);
 
 #endif
