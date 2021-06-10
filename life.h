@@ -64,4 +64,16 @@ Board* initBoard(int nrow, int ncol);
  **/
 void fillBoard(Board* b);
 
+/**
+ * @brief for a given cell returns the number of alive neighbours
+ * 
+ **/
+int aliveNeighboursCount(int row, int col, Board* b);
+
+/**
+ * @brief returns a next state (state in t+1) of a given cell
+ * 
+ **/
+int nextState(int row, int col, Board* b_t );
+
 #endif
