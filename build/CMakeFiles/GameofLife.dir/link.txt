@@ -1,1 +1,0 @@
-/usr/bin/cc -rdynamic CMakeFiles/GameofLife.dir/main.c.o CMakeFiles/GameofLife.dir/game/life.c.o CMakeFiles/GameofLife.dir/console/ansi_console.c.o -o GameofLife  -Wl,-rpath,/home/user/Desktop/GameofLife/build/game:/home/user/Desktop/GameofLife/build/console: game/libgame.so console/libconsole.so -lm 
