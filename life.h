@@ -17,6 +17,7 @@
 #include <unistd.h>
 #include<time.h>
 
+
 /** @def NROW_DEF
  * @brief Default number of rows
  * @def NCOL_DEF
@@ -30,7 +31,7 @@
  * **/
 #define NROW_DEF 12
 #define NCOL_DEF 12
-#define MAX_ITER_DEF 30
+#define MAX_ITER_DEF 100
 #define TIMEOUT_DEF 1
 #define MIN_NB_ROWS_COLS 4
 
@@ -97,12 +98,24 @@ void fill_matrix_random(int** matrix, int nrow, int ncol);
 Board* initBoard(int nrow, int ncol);
 
 /**
+ * @brief Prints the board to the console
+ * @param Board* b
+ * @return void
+ * 
+ **/
+void print_board(Board* b);
+
+
+/**
  * @brief Fills the given board either randomly or with DEAD cells
  * @param b: Board to fill
  * @param fillRandom: boolean, if true Board will be filled randomly
  * @return void
  **/
+
 void fillBoard(Board* b,bool fillRandom);
+
+
 
 /**
  * @brief For a given cell returns the number of alive neighbours
@@ -155,12 +168,6 @@ bool isSame(Board* b1, Board* b2);
  **/
 void deleteBoard(Board* b);
 
-/**
- * @brief Game loop
- * @param maxIter : maximum number of iterations. After maxIter time game will stop automatically
- * @return void
- * 
- **/
-void game(Board* b_t, int maxIter);
+
 
 #endif
