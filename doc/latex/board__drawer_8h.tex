@@ -1,0 +1,42 @@
+\hypertarget{board__drawer_8h}{}\doxysection{board\+\_\+drawer.\+h File Reference}
+\label{board__drawer_8h}\index{board\_drawer.h@{board\_drawer.h}}
+
+
+Function prototypes for the main loop of the game.  
+
+
+{\ttfamily \#include \char`\"{}life.\+h\char`\"{}}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{board__drawer_8h_ab641c77d1a98b073531de36d42a99e21}{game}} (\mbox{\hyperlink{life_8h_aa4f5d6e98e244d1c16b342af9ca18cce}{Board}} $\ast$b\+\_\+t, int max\+Iter, double timeout)
+\begin{DoxyCompactList}\small\item\em Game loop It is a recursive function \+: in every call of this function board will be printed and the next state of the board is calculated. Then the function calls itself with the new state and with 1 less iterations. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Function prototypes for the main loop of the game. 
+
+\begin{DoxyAuthor}{Author}
+Shamil Shukurov 
+\end{DoxyAuthor}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{board__drawer_8h_ab641c77d1a98b073531de36d42a99e21}\label{board__drawer_8h_ab641c77d1a98b073531de36d42a99e21}} 
+\index{board\_drawer.h@{board\_drawer.h}!game@{game}}
+\index{game@{game}!board\_drawer.h@{board\_drawer.h}}
+\doxysubsubsection{\texorpdfstring{game()}{game()}}
+{\footnotesize\ttfamily void game (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{life_8h_aa4f5d6e98e244d1c16b342af9ca18cce}{Board}} $\ast$}]{b\+\_\+t,  }\item[{int}]{max\+Iter,  }\item[{double}]{timeout }\end{DoxyParamCaption})}
+
+
+
+Game loop It is a recursive function \+: in every call of this function board will be printed and the next state of the board is calculated. Then the function calls itself with the new state and with 1 less iterations. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em max\+Iter} & \+: maximum number of iterations. After max\+Iter time game will stop automatically \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
