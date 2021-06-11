@@ -6,6 +6,11 @@
 #include<stdlib.h>
 #include <unistd.h>
 
+#define NROW_DEF 12
+#define NCOL_DEF 12
+#define MAX_ITER_DEF 30
+#define TIMEOUT_DEF 1
+
 /**
  *  enum for cell state : 0-dead, 1-alive
  **/

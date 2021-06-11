@@ -1,9 +1,8 @@
 #include "life.h"
-#define NROW 12
-#define NCOL 12
+
 int main(int argc, char const *argv[])
 {
-    Board * board_t = initBoard(NROW,NCOL);
+    Board * board_t = initBoard(NROW_DEF,NCOL_DEF);
     fillBoard(board_t);
     // Glider
     board_t->gameGrid[1][2] = ALIVE;
@@ -12,7 +11,7 @@ int main(int argc, char const *argv[])
     board_t->gameGrid[3][2] = ALIVE;
     board_t->gameGrid[3][1] = ALIVE;
 
-    game(board_t,30);
+    game(board_t,MAX_ITER_DEF);
 
     return 0;
 }
