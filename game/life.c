@@ -62,17 +62,16 @@ Board* initBoard(int nrow, int ncol){
 void print_board(Board* b){
     if(b==NULL) return;
 
-    printf("\x1b[H");
-    printf("\x1b[2J");
+    printf(CLR_SCR);
     for(int i=0; i<b->nrow; i++){
         for(int j=0;j<b->ncol;j++){
             
             if(b->gameGrid[i][j]==ALIVE){
                 
-                printf("\x1b[2;37;40mx \033[0m");
+                printf("%s  %s",MAGB,reset);
             }
             if(b->gameGrid[i][j]==DEAD){
-                printf("\x1b[41m  \033[0m");
+                printf("  ");
             }
             
         }

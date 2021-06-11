@@ -1,0 +1,1 @@
+/usr/bin/cc -fPIC -shared -Wl,-soname,libgame.so -o libgame.so CMakeFiles/game.dir/life.c.o 

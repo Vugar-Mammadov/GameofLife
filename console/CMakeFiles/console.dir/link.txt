@@ -1,0 +1,1 @@
+/usr/bin/cc -fPIC -shared -Wl,-soname,libconsole.so -o libconsole.so CMakeFiles/console.dir/ansi_console.c.o 

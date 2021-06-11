@@ -1,0 +1,5 @@
+/usr/local/bin/GameofLife
+/usr/local/lib/libconsole.so
+/usr/local/include/board_drawer.h
+/usr/local/lib/libgame.so
+/usr/local/include/life.h

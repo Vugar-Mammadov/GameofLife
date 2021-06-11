@@ -35,6 +35,20 @@
 #define TIMEOUT_DEF 1
 #define MIN_NB_ROWS_COLS 4
 
+/** @def MAGB
+ * @brief Magenta Background
+ * @def CLR_SCR
+ * @brief Clear Screen
+ * @def reset
+ * @brief Reset
+ * **/
+#define MAGB "\e[45m"
+#define CLR_SCR "\x1b[H\x1b[2J"
+#define reset "\033[0m"
+
+
+
+
 /**
  *  @enum cellState
  *  @brief Enumeration for cell state
