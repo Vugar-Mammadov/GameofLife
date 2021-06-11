@@ -9,6 +9,12 @@
  **/
 int ** create_2D_array(int nrow, int ncol){
     int **arr = (int **)calloc(nrow, sizeof(int *));
+
+    if(arr==NULL){
+        printf("Overflow!");
+        exit(0);
+    }
+
     for (int i=0; i<nrow; i++)
          arr[i] = (int *)calloc(ncol, sizeof(int));
     return arr;
@@ -54,6 +60,12 @@ void print_matrix(int** matrix, int nrow, int ncol){
  **/
 Board* initBoard(int nrow, int ncol){
     Board* b = (Board*) malloc(sizeof(Board));
+    
+    if(b==NULL){
+        printf("Overflow!");
+        exit(0);
+    }
+
     b->ncol = ncol;
     b->nrow = nrow;
     b->gameGrid = create_2D_array(nrow,ncol);
@@ -65,6 +77,8 @@ Board* initBoard(int nrow, int ncol){
  * 
  **/
 void print_board(Board* b){
+    if(b==NULL) return;
+
     printf("\x1b[H");
     printf("\x1b[2J");
     for(int i=0; i<b->nrow; i++){
@@ -88,6 +102,8 @@ void print_board(Board* b){
  * 
  **/
 void fillBoard(Board* b){
+    if(b==NULL) return;
+
     fill_matrix(DEAD,b->gameGrid,b->nrow,b->ncol);
 }
 
@@ -98,6 +114,8 @@ void fillBoard(Board* b){
  **/
 
 int aliveNeighboursCount(int row, int col, Board* b){
+    if(b==NULL) return -1;
+
     int count=0;
     // Check all of the neighbours and add them up
     if(row+1 < b->nrow) {
@@ -137,6 +155,8 @@ int aliveNeighboursCount(int row, int col, Board* b){
  **/
 
 int nextState(int row, int col, Board* b_t ){
+    if(b_t==NULL) return -1;
+
     int n_alive_neighbours = aliveNeighboursCount(row,col,b_t);
     int cell_state = b_t->gameGrid[row][col];
 
@@ -150,6 +170,8 @@ int nextState(int row, int col, Board* b_t ){
  * 
  **/
 Board* board_t1(Board* board_t){
+    if(board_t==NULL) return NULL;
+
     int nrow = board_t->nrow;
     int ncol = board_t->ncol;
     Board* board_t_plus_1 = initBoard(nrow,ncol);
@@ -168,6 +190,8 @@ Board* board_t1(Board* board_t){
  * 
  **/
 bool deadBoard(Board* b){
+    if(b==NULL) return true;
+
     for(int i=0;i<b->nrow;i++){
         for(int j=0;j< b->ncol; j++){
             if(b->gameGrid[i][j]==ALIVE) return false;
@@ -213,6 +237,7 @@ void deleteBoard(Board* b){
  * 
  **/
 void game(Board* b_t, int maxIter){
+    if(b_t==NULL) return;
     print_board(b_t);
     if(deadBoard(b_t) || maxIter==0) return;
     Board* b_t1 = board_t1(b_t);
