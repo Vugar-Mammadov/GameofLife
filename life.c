@@ -177,6 +177,26 @@ bool deadBoard(Board* b){
 }
 
 /**
+ * @brief Checks if the next state of board is the same as previous
+ * 
+ **/
+bool isSame(Board* b1, Board* b2){
+    if(b1==NULL || b2==NULL) return false;
+    if(b1->ncol!=b2->ncol || b1->nrow!=b2->nrow) return false;
+    int ncol = b1->ncol;
+    int nrow = b1->nrow;
+    for(int i=0;i<nrow;i++){
+        for(int j=0;j<ncol;j++){
+            if(b1->gameGrid[i][j] != b2->gameGrid[i][j]){
+                return false;
+            }
+        }
+    }
+    return true;
+}
+
+
+/**
  * @brief Game loop
  * 
  **/

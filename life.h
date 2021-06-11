@@ -94,6 +94,12 @@ Board* board_t1(Board* board_t);
 bool deadBoard(Board* b);
 
 /**
+ * @brief Checks if the next state of board is the same as previous
+ * 
+ **/
+bool isSame(Board* b1, Board* b2);
+
+/**
  * @brief Game loop
  * 
  **/
