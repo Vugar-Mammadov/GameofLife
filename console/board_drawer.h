@@ -20,7 +20,7 @@
  * @return void
  * 
  **/
-void game(Board* b_t, int maxIter);
+void game(Board* b_t, int maxIter, double timeout);
 
 
 

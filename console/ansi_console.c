@@ -7,7 +7,7 @@
 #include "board_drawer.h"
 #include "life.h"
 
-void game(Board* b_t, int maxIter){
+void game(Board* b_t, int maxIter, double timeout){
     if(b_t==NULL) return;
     print_board(b_t);
     if(deadBoard(b_t) || maxIter==0) return;
@@ -18,6 +18,6 @@ void game(Board* b_t, int maxIter){
         return;
     }
     deleteBoard(b_t);
-    sleep(1);
-    return game(b_t1, maxIter-1); 
+    sleep(timeout);
+    return game(b_t1, maxIter-1,timeout); 
 }
