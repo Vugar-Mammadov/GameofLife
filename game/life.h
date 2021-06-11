@@ -25,7 +25,7 @@
  * @def MAX_ITER_DEF
  * @brief Default number of maximum iterations
  * @def TIMEOUT_DEF
- * @brief Default number of timeout
+ * @brief Default number of timeout between two states of boards
  * @def MIN_NB_ROWS_COLS
  * @brief Minimum width and height
  * **/
