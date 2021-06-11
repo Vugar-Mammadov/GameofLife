@@ -139,7 +139,7 @@ void fillBoard(Board* b,bool fillRandom);
  * @param b: Board in which is the cell in
  * @return number of alive neighbours of the cells, -1 in if b_t is NULL
  **/
-int aliveNeighboursCount(int row, int col, Board* b);
+int aliveNeighboursCount(int row, int col, Board* b, bool isCircular);
 
 /**
  * @brief Returns a next state (state in t+1) of a given cell
@@ -149,16 +149,18 @@ int aliveNeighboursCount(int row, int col, Board* b);
  * @param b_t: Board which is the cell in
  * @return next state of the cell: DEAD or ALIVE, -1 in if b_t is NULL
  **/
-int nextState(int row, int col, Board* b_t );
+int nextState(int row, int col, Board* b_t , bool isCircular);
 
 /**
  * @brief Reads the current board and returns a board for time t+1
  * 
  * @param board_t : Board with the current states of cells
+ * @param isCircular : specify if it is circular or not
  * @return : new board which contains the next states of all the cells, if board_t is NULL returns NULL
  * 
  **/
-Board* board_t1(Board* board_t);
+
+Board* board_t1(Board* board_t, bool isCircular);
 
 /**
  * @brief Checks if all of the cells of a board is dead
