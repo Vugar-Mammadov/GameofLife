@@ -9,6 +9,12 @@
  **/
 int ** create_2D_array(int nrow, int ncol){
     int **arr = (int **)calloc(nrow, sizeof(int *));
+
+    if(arr==NULL){
+        printf("Overflow!");
+        exit(0);
+    }
+
     for (int i=0; i<nrow; i++)
          arr[i] = (int *)calloc(ncol, sizeof(int));
     return arr;
@@ -30,21 +36,15 @@ void fill_matrix(int n, int** matrix, int nrow, int ncol){
     }
 }
 
-/**
- * @brief prints the given matrix in the console
- * 
- **/
-void print_matrix(int** matrix, int nrow, int ncol){
+
+void fill_matrix_random(int** matrix, int nrow, int ncol){
+    if(matrix==NULL || (*matrix)==NULL) return;
+    srand(time(0));
     for(int i=0; i<nrow; i++){
         for(int j=0;j<ncol;j++){
-            printf("%d ",matrix[i][j]);
+            matrix[i][j]= rand() % 2;
         }
-        printf("\n");
-    }
-    for(int i=0; i<ncol*2;i++){
-        printf("=");
-    }
-    printf("\n");
+    }  
 }
 
 /**
@@ -53,7 +53,15 @@ void print_matrix(int** matrix, int nrow, int ncol){
  * 
  **/
 Board* initBoard(int nrow, int ncol){
+    if(nrow< MIN_NB_ROWS_COLS) nrow= MIN_NB_ROWS_COLS;
+    if(ncol < MIN_NB_ROWS_COLS) ncol = MIN_NB_ROWS_COLS;
     Board* b = (Board*) malloc(sizeof(Board));
+    
+    if(b==NULL){
+        printf("Overflow!");
+        exit(0);
+    }
+
     b->ncol = ncol;
     b->nrow = nrow;
     b->gameGrid = create_2D_array(nrow,ncol);
@@ -65,6 +73,8 @@ Board* initBoard(int nrow, int ncol){
  * 
  **/
 void print_board(Board* b){
+    if(b==NULL) return;
+
     printf("\x1b[H");
     printf("\x1b[2J");
     for(int i=0; i<b->nrow; i++){
@@ -72,7 +82,7 @@ void print_board(Board* b){
             
             if(b->gameGrid[i][j]==ALIVE){
                 
-                printf("\x1b[2;37;40m- \033[0m");
+                printf("\x1b[2;37;40mx \033[0m");
             }
             if(b->gameGrid[i][j]==DEAD){
                 printf("\x1b[41m  \033[0m");
@@ -87,8 +97,14 @@ void print_board(Board* b){
  * @brief fills the given board with DEAD cells 
  * 
  **/
-void fillBoard(Board* b){
-    fill_matrix(DEAD,b->gameGrid,b->nrow,b->ncol);
+void fillBoard(Board* b,bool fillRandom){
+    if(b==NULL) return;
+    if(fillRandom){
+        fill_matrix_random(b->gameGrid,b->nrow,b->ncol);
+    }
+    else{
+        fill_matrix(DEAD,b->gameGrid,b->nrow,b->ncol);
+    }
 }
 
 
@@ -98,6 +114,8 @@ void fillBoard(Board* b){
  **/
 
 int aliveNeighboursCount(int row, int col, Board* b){
+    if(b==NULL) return -1;
+
     int count=0;
     // Check all of the neighbours and add them up
     if(row+1 < b->nrow) {
@@ -137,6 +155,8 @@ int aliveNeighboursCount(int row, int col, Board* b){
  **/
 
 int nextState(int row, int col, Board* b_t ){
+    if(b_t==NULL) return -1;
+
     int n_alive_neighbours = aliveNeighboursCount(row,col,b_t);
     int cell_state = b_t->gameGrid[row][col];
 
@@ -150,6 +170,8 @@ int nextState(int row, int col, Board* b_t ){
  * 
  **/
 Board* board_t1(Board* board_t){
+    if(board_t==NULL) return NULL;
+
     int nrow = board_t->nrow;
     int ncol = board_t->ncol;
     Board* board_t_plus_1 = initBoard(nrow,ncol);
@@ -168,6 +190,8 @@ Board* board_t1(Board* board_t){
  * 
  **/
 bool deadBoard(Board* b){
+    if(b==NULL) return true;
+
     for(int i=0;i<b->nrow;i++){
         for(int j=0;j< b->ncol; j++){
             if(b->gameGrid[i][j]==ALIVE) return false;
@@ -177,13 +201,52 @@ bool deadBoard(Board* b){
 }
 
 /**
+ * @brief Checks if the next state of board is the same as previous
+ * 
+ **/
+bool isSame(Board* b1, Board* b2){
+    if(b1==NULL || b2==NULL) return false;
+    if(b1->ncol!=b2->ncol || b1->nrow!=b2->nrow) return false;
+    int ncol = b1->ncol;
+    int nrow = b1->nrow;
+    for(int i=0;i<nrow;i++){
+        for(int j=0;j<ncol;j++){
+            if(b1->gameGrid[i][j] != b2->gameGrid[i][j]){
+                return false;
+            }
+        }
+    }
+    return true;
+}
+
+/**
+ * @brief Deletes the board and frees the memory
+ * 
+ **/
+void deleteBoard(Board* b){
+    if(b==NULL) return;
+    for(int i=0;i<b->nrow;i++){
+        free(b->gameGrid[i]);
+    }
+    free(b->gameGrid);
+    free(b);
+}
+
+/**
  * @brief Game loop
  * 
  **/
 void game(Board* b_t, int maxIter){
+    if(b_t==NULL) return;
     print_board(b_t);
     if(deadBoard(b_t) || maxIter==0) return;
     Board* b_t1 = board_t1(b_t);
+    // If it is still life, there is no meaning continue to iterate
+    if(isSame(b_t,b_t1)){
+        deleteBoard(b_t);
+        return;
+    }
+    deleteBoard(b_t);
     sleep(1);
     return game(b_t1, maxIter-1); 
 }
