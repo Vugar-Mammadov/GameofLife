@@ -195,6 +195,18 @@ bool isSame(Board* b1, Board* b2){
     return true;
 }
 
+/**
+ * @brief Deletes the board and frees the memory
+ * 
+ **/
+void deleteBoard(Board* b){
+    if(b==NULL) return;
+    for(int i=0;i<b->nrow;i++){
+        free(b->gameGrid[i]);
+    }
+    free(b->gameGrid);
+    free(b);
+}
 
 /**
  * @brief Game loop
@@ -204,6 +216,12 @@ void game(Board* b_t, int maxIter){
     print_board(b_t);
     if(deadBoard(b_t) || maxIter==0) return;
     Board* b_t1 = board_t1(b_t);
+    // If it is still life, there is no meaning continue to iterate
+    if(isSame(b_t,b_t1)){
+        deleteBoard(b_t);
+        return;
+    }
+    deleteBoard(b_t);
     sleep(1);
     return game(b_t1, maxIter-1); 
 }

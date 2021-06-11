@@ -100,6 +100,12 @@ bool deadBoard(Board* b);
 bool isSame(Board* b1, Board* b2);
 
 /**
+ * @brief Deletes the board and frees the memory
+ * 
+ **/
+void deleteBoard(Board* b);
+
+/**
  * @brief Game loop
  * 
  **/
