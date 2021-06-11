@@ -8,6 +8,7 @@
  */
 
 #include "life.h"
+#include "board_drawer.h"
 
 int main(int argc, char const *argv[])
 {
