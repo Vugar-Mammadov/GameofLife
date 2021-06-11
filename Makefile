@@ -23,5 +23,8 @@ $(EXECUTABLE) : $(OBJECTS)
 clean :
 	rm $(OBJECTS) *~
 
+doc:
+	doxygen
+
 dist:
 	 tar -czvf gameoflife.tar.gz $(SOURCES) $(INCLUDES) Makefile

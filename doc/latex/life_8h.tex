@@ -1,0 +1,350 @@
+\hypertarget{life_8h}{}\doxysection{life.\+h File Reference}
+\label{life_8h}\index{life.h@{life.h}}
+
+
+Function prototypes for the game of life.  
+
+
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stdbool.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$unistd.\+h$>$}\newline
+{\ttfamily \#include $<$time.\+h$>$}\newline
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structboard}{board}}
+\begin{DoxyCompactList}\small\item\em Structure for the game board. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{life_8h_a7a52bcad564f9194062663c9b2c2ed81}\label{life_8h_a7a52bcad564f9194062663c9b2c2ed81}} 
+\#define \mbox{\hyperlink{life_8h_a7a52bcad564f9194062663c9b2c2ed81}{NROW\+\_\+\+DEF}}~12
+\begin{DoxyCompactList}\small\item\em Default number of rows. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{life_8h_a2e92020d9876185d5b3a482ccd11943e}\label{life_8h_a2e92020d9876185d5b3a482ccd11943e}} 
+\#define \mbox{\hyperlink{life_8h_a2e92020d9876185d5b3a482ccd11943e}{NCOL\+\_\+\+DEF}}~12
+\begin{DoxyCompactList}\small\item\em Default number of columns. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{life_8h_a44dd355f04f16726e6f0c4e25d801fe0}\label{life_8h_a44dd355f04f16726e6f0c4e25d801fe0}} 
+\#define \mbox{\hyperlink{life_8h_a44dd355f04f16726e6f0c4e25d801fe0}{MAX\+\_\+\+ITER\+\_\+\+DEF}}~30
+\begin{DoxyCompactList}\small\item\em Default number of maximum iterations. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{life_8h_a60e21790314b5ad3bf5b39bd0209ca48}\label{life_8h_a60e21790314b5ad3bf5b39bd0209ca48}} 
+\#define \mbox{\hyperlink{life_8h_a60e21790314b5ad3bf5b39bd0209ca48}{TIMEOUT\+\_\+\+DEF}}~1
+\begin{DoxyCompactList}\small\item\em Default number of timeout. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{life_8h_a279b5f009ec657a2a6760e2012d285b9}\label{life_8h_a279b5f009ec657a2a6760e2012d285b9}} 
+\#define \mbox{\hyperlink{life_8h_a279b5f009ec657a2a6760e2012d285b9}{MIN\+\_\+\+NB\+\_\+\+ROWS\+\_\+\+COLS}}~4
+\begin{DoxyCompactList}\small\item\em Minimum width and height. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{life_8h_aa4f5d6e98e244d1c16b342af9ca18cce}\label{life_8h_aa4f5d6e98e244d1c16b342af9ca18cce}} 
+typedef struct \mbox{\hyperlink{structboard}{board}} \mbox{\hyperlink{life_8h_aa4f5d6e98e244d1c16b342af9ca18cce}{Board}}
+\begin{DoxyCompactList}\small\item\em Structure for the game board. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{life_8h_a38e97bf4503f8099c49fac77b951ae63}{cell\+State}} \{ {\bfseries DEAD}
+, {\bfseries ALIVE}
+ \}
+\begin{DoxyCompactList}\small\item\em Enumeration for cell state. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int $\ast$$\ast$ \mbox{\hyperlink{life_8h_a833a732aee642e0e758f8adfb7671b39}{create\+\_\+2\+D\+\_\+array}} (int nrow, int ncol)
+\begin{DoxyCompactList}\small\item\em Creates 2D array and returns the pointer to it. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{life_8h_afcfd51ce2014ab0cf9f21385f8b2cc6f}{fill\+\_\+matrix}} (int n, int $\ast$$\ast$matrix, int nrow, int ncol)
+\begin{DoxyCompactList}\small\item\em Fills given matrix with the given value. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{life_8h_ab1a65a442b9e25e8fa0b87855749f773}{fill\+\_\+matrix\+\_\+random}} (int $\ast$$\ast$matrix, int nrow, int ncol)
+\begin{DoxyCompactList}\small\item\em Fills given matrix with 0 and 1\textquotesingle{}s randomly. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{life_8h_aa4f5d6e98e244d1c16b342af9ca18cce}{Board}} $\ast$ \mbox{\hyperlink{life_8h_aace6acff2f83340f3ac4dda6f449cccc}{init\+Board}} (int nrow, int ncol)
+\begin{DoxyCompactList}\small\item\em Initialize new game board with the specified width and height. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{life_8h_aa442ab3f908043c12dc9572f8f8e0310}{fill\+Board}} (\mbox{\hyperlink{life_8h_aa4f5d6e98e244d1c16b342af9ca18cce}{Board}} $\ast$b, bool fill\+Random)
+\begin{DoxyCompactList}\small\item\em Fills the given board either randomly or with DEAD cells. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{life_8h_a427628ae6011d8c77f4dfe54a8b48d3d}{alive\+Neighbours\+Count}} (int row, int col, \mbox{\hyperlink{life_8h_aa4f5d6e98e244d1c16b342af9ca18cce}{Board}} $\ast$b)
+\begin{DoxyCompactList}\small\item\em For a given cell returns the number of alive neighbours. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{life_8h_ab4da00242e098f7e2e290cd9ea89ff1b}{next\+State}} (int row, int col, \mbox{\hyperlink{life_8h_aa4f5d6e98e244d1c16b342af9ca18cce}{Board}} $\ast$b\+\_\+t)
+\begin{DoxyCompactList}\small\item\em Returns a next state (state in t+1) of a given cell. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{life_8h_aa4f5d6e98e244d1c16b342af9ca18cce}{Board}} $\ast$ \mbox{\hyperlink{life_8h_a5aa2557643d946b2e11b9ad55ecfde4d}{board\+\_\+t1}} (\mbox{\hyperlink{life_8h_aa4f5d6e98e244d1c16b342af9ca18cce}{Board}} $\ast$board\+\_\+t)
+\begin{DoxyCompactList}\small\item\em Reads the current board and returns a board for time t+1. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{life_8h_a82189efe80d48dd305d62740cf216ca7}{dead\+Board}} (\mbox{\hyperlink{life_8h_aa4f5d6e98e244d1c16b342af9ca18cce}{Board}} $\ast$b)
+\begin{DoxyCompactList}\small\item\em Checks if all of the cells of a board is dead. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{life_8h_afe0ffc74b22cbcca39d78a4b59a1842c}{is\+Same}} (\mbox{\hyperlink{life_8h_aa4f5d6e98e244d1c16b342af9ca18cce}{Board}} $\ast$b1, \mbox{\hyperlink{life_8h_aa4f5d6e98e244d1c16b342af9ca18cce}{Board}} $\ast$b2)
+\begin{DoxyCompactList}\small\item\em Checks if the next state of board is the same as previous. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{life_8h_aaa781ad22c18796d59204102c0808669}{delete\+Board}} (\mbox{\hyperlink{life_8h_aa4f5d6e98e244d1c16b342af9ca18cce}{Board}} $\ast$b)
+\begin{DoxyCompactList}\small\item\em Deletes the board and frees the memory. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{life_8h_a35a1901d1fa391ce4c54ca48f1e72504}{game}} (\mbox{\hyperlink{life_8h_aa4f5d6e98e244d1c16b342af9ca18cce}{Board}} $\ast$b\+\_\+t, int max\+Iter)
+\begin{DoxyCompactList}\small\item\em Game loop. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Function prototypes for the game of life. 
+
+This contains the prototypes and the macros for the game logic and board drawings.
+
+\begin{DoxyAuthor}{Author}
+Shamil Shukurov 
+\end{DoxyAuthor}
+
+
+\doxysubsection{Enumeration Type Documentation}
+\mbox{\Hypertarget{life_8h_a38e97bf4503f8099c49fac77b951ae63}\label{life_8h_a38e97bf4503f8099c49fac77b951ae63}} 
+\index{life.h@{life.h}!cellState@{cellState}}
+\index{cellState@{cellState}!life.h@{life.h}}
+\doxysubsubsection{\texorpdfstring{cellState}{cellState}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{life_8h_a38e97bf4503f8099c49fac77b951ae63}{cell\+State}}}
+
+
+
+Enumeration for cell state. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em DEAD\+:0} & \\
+\hline
+{\em ALIVE\+:1} & \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{life_8h_a427628ae6011d8c77f4dfe54a8b48d3d}\label{life_8h_a427628ae6011d8c77f4dfe54a8b48d3d}} 
+\index{life.h@{life.h}!aliveNeighboursCount@{aliveNeighboursCount}}
+\index{aliveNeighboursCount@{aliveNeighboursCount}!life.h@{life.h}}
+\doxysubsubsection{\texorpdfstring{aliveNeighboursCount()}{aliveNeighboursCount()}}
+{\footnotesize\ttfamily int alive\+Neighbours\+Count (\begin{DoxyParamCaption}\item[{int}]{row,  }\item[{int}]{col,  }\item[{\mbox{\hyperlink{life_8h_aa4f5d6e98e244d1c16b342af9ca18cce}{Board}} $\ast$}]{b }\end{DoxyParamCaption})}
+
+
+
+For a given cell returns the number of alive neighbours. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em row} & row number of the cell \\
+\hline
+{\em col} & col number of the cell \\
+\hline
+{\em b} & Board in which is the cell in \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+number of alive neighbours of the cells, -\/1 in if b\+\_\+t is NULL 
+\end{DoxyReturn}
+\mbox{\Hypertarget{life_8h_a5aa2557643d946b2e11b9ad55ecfde4d}\label{life_8h_a5aa2557643d946b2e11b9ad55ecfde4d}} 
+\index{life.h@{life.h}!board\_t1@{board\_t1}}
+\index{board\_t1@{board\_t1}!life.h@{life.h}}
+\doxysubsubsection{\texorpdfstring{board\_t1()}{board\_t1()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{life_8h_aa4f5d6e98e244d1c16b342af9ca18cce}{Board}}$\ast$ board\+\_\+t1 (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{life_8h_aa4f5d6e98e244d1c16b342af9ca18cce}{Board}} $\ast$}]{board\+\_\+t }\end{DoxyParamCaption})}
+
+
+
+Reads the current board and returns a board for time t+1. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em board\+\_\+t} & \+: Board with the current states of cells \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\+: new board which contains the next states of all the cells, if board\+\_\+t is NULL returns NULL 
+\end{DoxyReturn}
+\mbox{\Hypertarget{life_8h_a833a732aee642e0e758f8adfb7671b39}\label{life_8h_a833a732aee642e0e758f8adfb7671b39}} 
+\index{life.h@{life.h}!create\_2D\_array@{create\_2D\_array}}
+\index{create\_2D\_array@{create\_2D\_array}!life.h@{life.h}}
+\doxysubsubsection{\texorpdfstring{create\_2D\_array()}{create\_2D\_array()}}
+{\footnotesize\ttfamily int$\ast$$\ast$ create\+\_\+2\+D\+\_\+array (\begin{DoxyParamCaption}\item[{int}]{nrow,  }\item[{int}]{ncol }\end{DoxyParamCaption})}
+
+
+
+Creates 2D array and returns the pointer to it. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em nrow} & number of rows \\
+\hline
+{\em ncol} & number of columns\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+returns\+: pointer to the 2D integer array 
+\end{DoxyReturn}
+\mbox{\Hypertarget{life_8h_a82189efe80d48dd305d62740cf216ca7}\label{life_8h_a82189efe80d48dd305d62740cf216ca7}} 
+\index{life.h@{life.h}!deadBoard@{deadBoard}}
+\index{deadBoard@{deadBoard}!life.h@{life.h}}
+\doxysubsubsection{\texorpdfstring{deadBoard()}{deadBoard()}}
+{\footnotesize\ttfamily bool dead\+Board (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{life_8h_aa4f5d6e98e244d1c16b342af9ca18cce}{Board}} $\ast$}]{b }\end{DoxyParamCaption})}
+
+
+
+Checks if all of the cells of a board is dead. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Board$\ast$} & b \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if all the cells of the given board is dead, false otherwise 
+\end{DoxyReturn}
+\mbox{\Hypertarget{life_8h_aaa781ad22c18796d59204102c0808669}\label{life_8h_aaa781ad22c18796d59204102c0808669}} 
+\index{life.h@{life.h}!deleteBoard@{deleteBoard}}
+\index{deleteBoard@{deleteBoard}!life.h@{life.h}}
+\doxysubsubsection{\texorpdfstring{deleteBoard()}{deleteBoard()}}
+{\footnotesize\ttfamily void delete\+Board (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{life_8h_aa4f5d6e98e244d1c16b342af9ca18cce}{Board}} $\ast$}]{b }\end{DoxyParamCaption})}
+
+
+
+Deletes the board and frees the memory. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em b} & Board which we wanted to delete \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+\mbox{\Hypertarget{life_8h_afcfd51ce2014ab0cf9f21385f8b2cc6f}\label{life_8h_afcfd51ce2014ab0cf9f21385f8b2cc6f}} 
+\index{life.h@{life.h}!fill\_matrix@{fill\_matrix}}
+\index{fill\_matrix@{fill\_matrix}!life.h@{life.h}}
+\doxysubsubsection{\texorpdfstring{fill\_matrix()}{fill\_matrix()}}
+{\footnotesize\ttfamily void fill\+\_\+matrix (\begin{DoxyParamCaption}\item[{int}]{n,  }\item[{int $\ast$$\ast$}]{matrix,  }\item[{int}]{nrow,  }\item[{int}]{ncol }\end{DoxyParamCaption})}
+
+
+
+Fills given matrix with the given value. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em n} & \+: value which will be filled \\
+\hline
+{\em matrix} & \+: 2D matrix \\
+\hline
+{\em nrow} & number of rows in the matrix \\
+\hline
+{\em ncol} & number of columns in the matrix \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+\mbox{\Hypertarget{life_8h_ab1a65a442b9e25e8fa0b87855749f773}\label{life_8h_ab1a65a442b9e25e8fa0b87855749f773}} 
+\index{life.h@{life.h}!fill\_matrix\_random@{fill\_matrix\_random}}
+\index{fill\_matrix\_random@{fill\_matrix\_random}!life.h@{life.h}}
+\doxysubsubsection{\texorpdfstring{fill\_matrix\_random()}{fill\_matrix\_random()}}
+{\footnotesize\ttfamily void fill\+\_\+matrix\+\_\+random (\begin{DoxyParamCaption}\item[{int $\ast$$\ast$}]{matrix,  }\item[{int}]{nrow,  }\item[{int}]{ncol }\end{DoxyParamCaption})}
+
+
+
+Fills given matrix with 0 and 1\textquotesingle{}s randomly. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em matrix} & \+: 2D matrix \\
+\hline
+{\em nrow} & number of rows in the matrix \\
+\hline
+{\em ncol} & number of columns in the matrix \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+\mbox{\Hypertarget{life_8h_aa442ab3f908043c12dc9572f8f8e0310}\label{life_8h_aa442ab3f908043c12dc9572f8f8e0310}} 
+\index{life.h@{life.h}!fillBoard@{fillBoard}}
+\index{fillBoard@{fillBoard}!life.h@{life.h}}
+\doxysubsubsection{\texorpdfstring{fillBoard()}{fillBoard()}}
+{\footnotesize\ttfamily void fill\+Board (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{life_8h_aa4f5d6e98e244d1c16b342af9ca18cce}{Board}} $\ast$}]{b,  }\item[{bool}]{fill\+Random }\end{DoxyParamCaption})}
+
+
+
+Fills the given board either randomly or with DEAD cells. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em b} & Board to fill \\
+\hline
+{\em fill\+Random} & boolean, if true Board will be filled randomly \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+\mbox{\Hypertarget{life_8h_a35a1901d1fa391ce4c54ca48f1e72504}\label{life_8h_a35a1901d1fa391ce4c54ca48f1e72504}} 
+\index{life.h@{life.h}!game@{game}}
+\index{game@{game}!life.h@{life.h}}
+\doxysubsubsection{\texorpdfstring{game()}{game()}}
+{\footnotesize\ttfamily void game (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{life_8h_aa4f5d6e98e244d1c16b342af9ca18cce}{Board}} $\ast$}]{b\+\_\+t,  }\item[{int}]{max\+Iter }\end{DoxyParamCaption})}
+
+
+
+Game loop. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em max\+Iter} & \+: maximum number of iterations. After max\+Iter time game will stop automatically \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+\mbox{\Hypertarget{life_8h_aace6acff2f83340f3ac4dda6f449cccc}\label{life_8h_aace6acff2f83340f3ac4dda6f449cccc}} 
+\index{life.h@{life.h}!initBoard@{initBoard}}
+\index{initBoard@{initBoard}!life.h@{life.h}}
+\doxysubsubsection{\texorpdfstring{initBoard()}{initBoard()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{life_8h_aa4f5d6e98e244d1c16b342af9ca18cce}{Board}}$\ast$ init\+Board (\begin{DoxyParamCaption}\item[{int}]{nrow,  }\item[{int}]{ncol }\end{DoxyParamCaption})}
+
+
+
+Initialize new game board with the specified width and height. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em nrow} & number of rows \\
+\hline
+{\em ncol} & number of cols \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+new Board 
+\end{DoxyReturn}
+\mbox{\Hypertarget{life_8h_afe0ffc74b22cbcca39d78a4b59a1842c}\label{life_8h_afe0ffc74b22cbcca39d78a4b59a1842c}} 
+\index{life.h@{life.h}!isSame@{isSame}}
+\index{isSame@{isSame}!life.h@{life.h}}
+\doxysubsubsection{\texorpdfstring{isSame()}{isSame()}}
+{\footnotesize\ttfamily bool is\+Same (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{life_8h_aa4f5d6e98e244d1c16b342af9ca18cce}{Board}} $\ast$}]{b1,  }\item[{\mbox{\hyperlink{life_8h_aa4f5d6e98e244d1c16b342af9ca18cce}{Board}} $\ast$}]{b2 }\end{DoxyParamCaption})}
+
+
+
+Checks if the next state of board is the same as previous. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Board$\ast$} & b1 \\
+\hline
+{\em Board$\ast$} & b2 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if all the cells of the board b1 is same as b2, false otherwise 
+\end{DoxyReturn}
+\mbox{\Hypertarget{life_8h_ab4da00242e098f7e2e290cd9ea89ff1b}\label{life_8h_ab4da00242e098f7e2e290cd9ea89ff1b}} 
+\index{life.h@{life.h}!nextState@{nextState}}
+\index{nextState@{nextState}!life.h@{life.h}}
+\doxysubsubsection{\texorpdfstring{nextState()}{nextState()}}
+{\footnotesize\ttfamily int next\+State (\begin{DoxyParamCaption}\item[{int}]{row,  }\item[{int}]{col,  }\item[{\mbox{\hyperlink{life_8h_aa4f5d6e98e244d1c16b342af9ca18cce}{Board}} $\ast$}]{b\+\_\+t }\end{DoxyParamCaption})}
+
+
+
+Returns a next state (state in t+1) of a given cell. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em row} & row number of the cell \\
+\hline
+{\em col} & col number of the cell \\
+\hline
+{\em b\+\_\+t} & Board which is the cell in \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+next state of the cell\+: DEAD or ALIVE, -\/1 in if b\+\_\+t is NULL 
+\end{DoxyReturn}
