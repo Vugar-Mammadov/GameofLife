@@ -1,12 +1,14 @@
+/** @file life.c
+ *  @brief Functions for the logic of the game and drawing the board
+ *
+ *  This file contains the functions for the game logic and 
+ *
+ *  @author Shamil Shukurov
+ */
+
 #include"life.h"
 
-/**
- *  @brief creates 2D array and returns the pointer to it
- *
- *  @param nrow: number of rows, ncol: number of columns
- *
- *  @return returns: pointer to the 2D integer array
- **/
+
 int ** create_2D_array(int nrow, int ncol){
     int **arr = (int **)calloc(nrow, sizeof(int *));
 
@@ -20,14 +22,7 @@ int ** create_2D_array(int nrow, int ncol){
     return arr;
 }
 
-/**
- * @brief fills given matrix with the given value
- * @param n : value which will be filled
- * @param matrix : 2D matrix
- * @param nrow: number of rows in the matrix
- * @param ncol: number of columns in the matrix
- * @returns void
- **/
+
 void fill_matrix(int n, int** matrix, int nrow, int ncol){
     for(int i=0; i<nrow; i++){
         for(int j=0;j<ncol;j++){
@@ -47,11 +42,7 @@ void fill_matrix_random(int** matrix, int nrow, int ncol){
     }  
 }
 
-/**
- * @brief initialize new game board with the specified width and height
- * @param nrow: number of rows, ncol:number of cols
- * 
- **/
+
 Board* initBoard(int nrow, int ncol){
     if(nrow< MIN_NB_ROWS_COLS) nrow= MIN_NB_ROWS_COLS;
     if(ncol < MIN_NB_ROWS_COLS) ncol = MIN_NB_ROWS_COLS;
@@ -68,10 +59,6 @@ Board* initBoard(int nrow, int ncol){
     return b;
 }
 
-/**
- * @brief prints board using ANSI
- * 
- **/
 void print_board(Board* b){
     if(b==NULL) return;
 
@@ -93,10 +80,7 @@ void print_board(Board* b){
     }
 }
 
-/**
- * @brief fills the given board with DEAD cells 
- * 
- **/
+
 void fillBoard(Board* b,bool fillRandom){
     if(b==NULL) return;
     if(fillRandom){
@@ -108,10 +92,6 @@ void fillBoard(Board* b,bool fillRandom){
 }
 
 
-/**
- * @brief for a given cell returns the number of alive neighbours
- * 
- **/
 
 int aliveNeighboursCount(int row, int col, Board* b){
     if(b==NULL) return -1;
@@ -149,10 +129,6 @@ int aliveNeighboursCount(int row, int col, Board* b){
     return count;
 }
 
-/**
- * @brief returns a next state (state in t+1) of a given cell
- * 
- **/
 
 int nextState(int row, int col, Board* b_t ){
     if(b_t==NULL) return -1;
@@ -165,10 +141,6 @@ int nextState(int row, int col, Board* b_t ){
     return DEAD;
 }
 
-/**
- * @brief Reads the current board and returns a board for time t+1
- * 
- **/
 Board* board_t1(Board* board_t){
     if(board_t==NULL) return NULL;
 
@@ -185,10 +157,6 @@ Board* board_t1(Board* board_t){
 }
 
 
-/**
- * @brief Checks if all of the cells of a board is dead
- * 
- **/
 bool deadBoard(Board* b){
     if(b==NULL) return true;
 
@@ -200,10 +168,7 @@ bool deadBoard(Board* b){
     return true;
 }
 
-/**
- * @brief Checks if the next state of board is the same as previous
- * 
- **/
+
 bool isSame(Board* b1, Board* b2){
     if(b1==NULL || b2==NULL) return false;
     if(b1->ncol!=b2->ncol || b1->nrow!=b2->nrow) return false;
@@ -219,10 +184,7 @@ bool isSame(Board* b1, Board* b2){
     return true;
 }
 
-/**
- * @brief Deletes the board and frees the memory
- * 
- **/
+
 void deleteBoard(Board* b){
     if(b==NULL) return;
     for(int i=0;i<b->nrow;i++){
@@ -232,10 +194,7 @@ void deleteBoard(Board* b){
     free(b);
 }
 
-/**
- * @brief Game loop
- * 
- **/
+
 void game(Board* b_t, int maxIter){
     if(b_t==NULL) return;
     print_board(b_t);

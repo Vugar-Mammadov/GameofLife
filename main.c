@@ -1,8 +1,17 @@
+
+/** @file main.c
+ *  @brief main function for the game
+ *
+ *  This file contains the main function for the game
+ *
+ *  @author Shamil Shukurov
+ */
+
 #include "life.h"
 
 int main(int argc, char const *argv[])
 {
-    Board * board_t = initBoard(NROW_DEF,NCOL_DEF);
+    Board * board_t = initBoard(15,15);
     fillBoard(board_t,true);
     // Glider
     // board_t->gameGrid[1][2] = ALIVE;
