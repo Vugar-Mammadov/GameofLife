@@ -19,6 +19,7 @@ int main(int argc, char const *argv[])
     if(argc != 4){
         printf("\nUsage : %s <width> <height> <nb_iterations>\n",argv[0]);
         printf("Default values will be used\n");
+        sleep(3);
     }
     else{
         ncol = atoi(argv[1]);
@@ -27,10 +28,39 @@ int main(int argc, char const *argv[])
     }
 
     Board * board_t = initBoard(nrow,ncol);
-    fillBoard(board_t,true);
+    fillBoard(board_t,false);
+    // Glider
+    board_t->gameGrid[1][2] = ALIVE;
+    board_t->gameGrid[2][3] = ALIVE;
+    board_t->gameGrid[3][3] = ALIVE;
+    board_t->gameGrid[3][2] = ALIVE;
+    board_t->gameGrid[3][1] = ALIVE;
 
+    // Block -Still life example
+    // board_t->gameGrid[1][1] = ALIVE;
+    // board_t->gameGrid[1][2] = ALIVE;
+    // board_t->gameGrid[2][1] = ALIVE;
+    // board_t->gameGrid[2][2] = ALIVE;
 
-    game(board_t,nb_iterations,TIMEOUT_DEF);
+    // Beacon
+    // board_t->gameGrid[1][1] = ALIVE;
+    // board_t->gameGrid[1][2] = ALIVE;
+    // board_t->gameGrid[2][1] = ALIVE;
+    // board_t->gameGrid[2][2] = ALIVE;
+    // board_t->gameGrid[3][3] = ALIVE;
+    // board_t->gameGrid[3][4] = ALIVE;
+    // board_t->gameGrid[4][3] = ALIVE;
+    // board_t->gameGrid[4][4] = ALIVE;
+    
+    // Toad
+    // board_t->gameGrid[2][3] = ALIVE;
+    // board_t->gameGrid[2][4] = ALIVE;
+    // board_t->gameGrid[2][5] = ALIVE;
+    // board_t->gameGrid[3][2] = ALIVE;
+    // board_t->gameGrid[3][3] = ALIVE;
+    // board_t->gameGrid[3][4] = ALIVE;
+
+    game(board_t,nb_iterations,TIMEOUT_DEF,true);
 
     return 0;
 }

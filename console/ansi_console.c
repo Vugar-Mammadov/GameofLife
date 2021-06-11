@@ -7,11 +7,11 @@
 #include "board_drawer.h"
 #include "life.h"
 
-void game(Board* b_t, int maxIter, double timeout){
+void game(Board* b_t, int maxIter, double timeout, bool isCircular){
     if(b_t==NULL) return;
     print_board(b_t);
     if(deadBoard(b_t) || maxIter==0) return;
-    Board* b_t1 = board_t1(b_t);
+    Board* b_t1 = board_t1(b_t,isCircular);
     // If it is still life, there is no meaning continue to iterate
     if(isSame(b_t,b_t1)){
         deleteBoard(b_t);
@@ -19,5 +19,5 @@ void game(Board* b_t, int maxIter, double timeout){
     }
     deleteBoard(b_t);
     sleep(timeout);
-    return game(b_t1, maxIter-1,timeout); 
+    return game(b_t1, maxIter-1,timeout,isCircular); 
 }
