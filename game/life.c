@@ -92,47 +92,38 @@ void fillBoard(Board* b,bool fillRandom){
 
 
 
-int aliveNeighboursCount(int row, int col, Board* b){
+int aliveNeighboursCount(int row, int col, Board* b, bool isCircular){
     if(b==NULL) return -1;
 
     int count=0;
-    // Check all of the neighbours and add them up
-    if(row+1 < b->nrow) {
-        count += b->gameGrid[row+1][col];
+    int neighbours[8][2] = {{row+1,col},{row-1,col},{row,col+1},{row,col-1},
+                            {row+1,col+1},{row+1,col-1},{row-1,col+1},{row-1,col-1}};
+    int r,c;
+    if(isCircular){
+        for(int i=0;i<8;i++){
+            r=(neighbours[i][0]+b->nrow)%b->nrow;
+            c = (neighbours[i][1]+b->ncol)%b->ncol;
+            count = count + b->gameGrid[r][c]; 
+        }
+    }
+    else{
+        for(int i=0;i<8;i++){
+        r=neighbours[i][0];
+        c = neighbours[i][1];
+            if(r>0 && r<b->nrow && c>0 && c<b->ncol){       
+                count = count + b->gameGrid[r][c];
+            }   
+        }
     }
 
-    if(row-1 >0){
-        count += b->gameGrid[row-1][col];
-    } 
-
-    if(col+1<b->ncol){
-        count += b->gameGrid[row][col+1];
-    }
-
-    if(col-1>0){
-        count += b->gameGrid[row][col-1];
-    }
-
-    if((row+1)< b->nrow && (col+1) < b->ncol){
-        count += b->gameGrid[row+1][col+1];
-    }
-    if((row+1)< b->nrow && (col-1) > 0){
-        count += b->gameGrid[row+1][col-1];
-    }
-    if((row-1)> 0 && (col+1) < b->ncol){
-        count += b->gameGrid[row-1][col+1];
-    }
-    if((row-1)> 0 && (col+1) > 0){
-        count += b->gameGrid[row-1][col-1];
-    }
     return count;
 }
 
 
-int nextState(int row, int col, Board* b_t ){
+int nextState(int row, int col, Board* b_t , bool isCircular){
     if(b_t==NULL) return -1;
 
-    int n_alive_neighbours = aliveNeighboursCount(row,col,b_t);
+    int n_alive_neighbours = aliveNeighboursCount(row,col,b_t,isCircular);
     int cell_state = b_t->gameGrid[row][col];
 
     if(cell_state==ALIVE && n_alive_neighbours==2) return ALIVE;
@@ -140,7 +131,7 @@ int nextState(int row, int col, Board* b_t ){
     return DEAD;
 }
 
-Board* board_t1(Board* board_t){
+Board* board_t1(Board* board_t, bool isCircular){
     if(board_t==NULL) return NULL;
 
     int nrow = board_t->nrow;
@@ -148,7 +139,7 @@ Board* board_t1(Board* board_t){
     Board* board_t_plus_1 = initBoard(nrow,ncol);
     for(int i=0;i<nrow; i++){
         for(int j=0;j<ncol;j++){
-            int state_t1 = nextState(i,j,board_t);
+            int state_t1 = nextState(i,j,board_t,isCircular);
             board_t_plus_1->gameGrid[i][j] = state_t1;
         }
     }
