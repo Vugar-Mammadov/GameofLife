@@ -37,12 +37,24 @@ void fill_matrix(int n, int** matrix, int nrow, int ncol){
 }
 
 
+void fill_matrix_random(int** matrix, int nrow, int ncol){
+    if(matrix==NULL || (*matrix)==NULL) return;
+    srand(time(0));
+    for(int i=0; i<nrow; i++){
+        for(int j=0;j<ncol;j++){
+            matrix[i][j]= rand() % 2;
+        }
+    }  
+}
+
 /**
  * @brief initialize new game board with the specified width and height
  * @param nrow: number of rows, ncol:number of cols
  * 
  **/
 Board* initBoard(int nrow, int ncol){
+    if(nrow< MIN_NB_ROWS_COLS) nrow= MIN_NB_ROWS_COLS;
+    if(ncol < MIN_NB_ROWS_COLS) ncol = MIN_NB_ROWS_COLS;
     Board* b = (Board*) malloc(sizeof(Board));
     
     if(b==NULL){
@@ -70,7 +82,7 @@ void print_board(Board* b){
             
             if(b->gameGrid[i][j]==ALIVE){
                 
-                printf("\x1b[2;37;40m- \033[0m");
+                printf("\x1b[2;37;40mx \033[0m");
             }
             if(b->gameGrid[i][j]==DEAD){
                 printf("\x1b[41m  \033[0m");
@@ -85,10 +97,14 @@ void print_board(Board* b){
  * @brief fills the given board with DEAD cells 
  * 
  **/
-void fillBoard(Board* b){
+void fillBoard(Board* b,bool fillRandom){
     if(b==NULL) return;
-
-    fill_matrix(DEAD,b->gameGrid,b->nrow,b->ncol);
+    if(fillRandom){
+        fill_matrix_random(b->gameGrid,b->nrow,b->ncol);
+    }
+    else{
+        fill_matrix(DEAD,b->gameGrid,b->nrow,b->ncol);
+    }
 }
 
 

@@ -5,11 +5,13 @@
 #include<stdbool.h>
 #include<stdlib.h>
 #include <unistd.h>
+#include<time.h>
 
 #define NROW_DEF 12
 #define NCOL_DEF 12
 #define MAX_ITER_DEF 30
 #define TIMEOUT_DEF 1
+#define MIN_NB_ROWS_COLS 4
 
 /**
  *  enum for cell state : 0-dead, 1-alive
@@ -49,7 +51,7 @@ int ** create_2D_array(int nrow, int ncol);
  **/
 void fill_matrix(int n, int** matrix, int nrow, int ncol);
 
-
+void fill_matrix_random(int** matrix, int nrow, int ncol);
 
 
 /**
@@ -63,7 +65,7 @@ Board* initBoard(int nrow, int ncol);
  * @brief fills the given board with DEAD cells 
  * 
  **/
-void fillBoard(Board* b);
+void fillBoard(Board* b,bool fillRandom);
 
 /**
  * @brief for a given cell returns the number of alive neighbours
