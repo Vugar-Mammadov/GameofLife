@@ -50,11 +50,7 @@ int ** create_2D_array(int nrow, int ncol);
 void fill_matrix(int n, int** matrix, int nrow, int ncol);
 
 
-/**
- * @brief prints the given matrix in the console
- * 
- **/
-void print_matrix(int** matrix, int nrow, int ncol);
+
 
 /**
  * @brief initialize new game board with the specified width and height

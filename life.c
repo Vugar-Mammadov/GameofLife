@@ -36,22 +36,6 @@ void fill_matrix(int n, int** matrix, int nrow, int ncol){
     }
 }
 
-/**
- * @brief prints the given matrix in the console
- * 
- **/
-void print_matrix(int** matrix, int nrow, int ncol){
-    for(int i=0; i<nrow; i++){
-        for(int j=0;j<ncol;j++){
-            printf("%d ",matrix[i][j]);
-        }
-        printf("\n");
-    }
-    for(int i=0; i<ncol*2;i++){
-        printf("=");
-    }
-    printf("\n");
-}
 
 /**
  * @brief initialize new game board with the specified width and height
