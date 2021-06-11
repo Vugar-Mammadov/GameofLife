@@ -18,13 +18,27 @@ int main(int argc, char const *argv[])
 
     if(argc != 4){
         printf("\nUsage : %s <width> <height> <nb_iterations>\n",argv[0]);
-        printf("Default values will be used\n");
-        sleep(3);
+        printf("Default values will be used...\n");
     }
     else{
         ncol = atoi(argv[1]);
         nrow = atoi(argv[2]);
         nb_iterations = atoi(argv[3]);
+
+        if(ncol<MIN_NB_ROWS_COLS){
+            printf("Too small value for the number of columns,default value will be used\n");
+        } 
+        if(nrow<MIN_NB_ROWS_COLS){
+            printf("Too small value for the number of rows, default value will be used\n");
+        } 
+    }
+
+    int version = 1;
+    bool isCircular = false;
+    printf("1.Clipped\n2.Circular\nChoose version:");
+    scanf("%d",&version);
+    if(version==2){
+        isCircular=true;
     }
 
     Board * board_t = initBoard(nrow,ncol);
@@ -60,7 +74,7 @@ int main(int argc, char const *argv[])
     // board_t->gameGrid[3][3] = ALIVE;
     // board_t->gameGrid[3][4] = ALIVE;
 
-    game(board_t,nb_iterations,TIMEOUT_DEF,true);
+    game(board_t,nb_iterations,TIMEOUT_DEF,isCircular);
 
     return 0;
 }
